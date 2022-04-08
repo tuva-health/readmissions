@@ -14,5 +14,6 @@ select
     cast(diagnosis_rank as integer) as diagnosis_rank
 
 from {{ var('src_diagnosis') }}
+where code_type = 'icd-10-cm'
 
 

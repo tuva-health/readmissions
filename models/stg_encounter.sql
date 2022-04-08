@@ -18,5 +18,6 @@ select
     cast(ms_drg as varchar) as ms_drg
     
 from {{ var('src_encounter') }}
+where encounter_type = 'acute inpatient'
 
 

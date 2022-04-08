@@ -13,3 +13,4 @@ select
     cast(code as varchar) as procedure_code
 
 from {{ var('src_procedure') }}
+where code_type = 'icd-10-pcs'
