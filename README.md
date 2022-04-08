@@ -5,4 +5,4 @@
 
 CMS Hospital Wide Readmission (HWR) Measure
 
-Check out the HWR [DAG](https://tuva-health.github.io/readmissions/)
+Check out the HWR [DAG](https://tuva-health.github.io/readmissions/#!/overview?g_v=1)
