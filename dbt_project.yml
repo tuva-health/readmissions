@@ -1,17 +1,17 @@
-name: 'readmissions_lean_input_on_hcup_in_our_snowflake'
-version: '0.1.5'
+name: 'readmissions'   
+version: '0.0.1'
 config-version: 2
-profile: readmissions_lean_input_on_hcup_in_our_snowflake   # configuration required
+profile:                       # configuration required: use your dbt profile
 
 vars:
-    source_name: hcup        # configuration required
-    source_database: hcup    # configuration required
-    source_schema: staging       # configuration required
+    source_name:               # configuration required
+    source_database:           # configuration required
+    source_schema:             # configuration required
 
-    src_patient: "{{ source(var('source_name'),'stg_patient') }}"
-    src_encounter: "{{ source(var('source_name'),'stg_encounter') }}"
-    src_diagnosis: "{{ source(var('source_name'),'stg_diagnosis') }}"
-    src_procedure: "{{ source(var('source_name'),'stg_procedure') }}"
+    src_patient: "{{ source(var('source_name'),'patient') }}"
+    src_encounter: "{{ source(var('source_name'),'encounter') }}"
+    src_diagnosis: "{{ source(var('source_name'),'condition') }}"
+    src_procedure: "{{ source(var('source_name'),'procedure') }}"
 
 source-paths: ["models"]
 analysis-paths: ["analysis"]
@@ -25,13 +25,13 @@ clean-targets:
     - "dbt_modules"
 
 models:
-  readmissions_lean_input_on_hcup_in_our_snowflake:
-    +database: hcup
-    +schema: readmissions_lean_input
+  readmissions:
+    +database:    # configuration required: database where readmissions models will be in
+    +schema:      # configuration required: schema where readmissions models will be in
 
 seeds:
-  readmissions_lean_input_on_hcup_in_our_snowflake:
-    +database: hcup
+  readmissions:
+    +database:    # configuration required: database where readmissions models will be in
     +schema: terminology
     +tags: terminology
     +quote_columns: false

@@ -10,7 +10,7 @@
 
 select
     cast(encounter_id as varchar) as encounter_id,
-    cast(diagnosis_code as varchar) as diagnosis_code,
+    cast(code as varchar) as diagnosis_code,
     cast(diagnosis_rank as integer) as diagnosis_rank
 
 from {{ var('src_diagnosis') }}
