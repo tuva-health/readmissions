@@ -3,5 +3,6 @@
 # Readmissions 
 
 
-CMS Hospital Wide Readmission Measure
+CMS Hospital Wide Readmission (HWR) Measure
 
+Check out the HWR [DAG](https://tuva-health.github.io/readmissions/)
