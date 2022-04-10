@@ -31,7 +31,7 @@ models:
 
 seeds:
   readmissions:
-    +database:    # configuration required: database where readmissions models will be in
+    +database:    # configuration required: database where seed files will be in
     +schema: terminology
     +tags: terminology
     +quote_columns: false
