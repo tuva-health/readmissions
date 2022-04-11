@@ -11,7 +11,7 @@ sources:
           - name: patient_id
             description: Unique ID for each patient.
           - name: gender
-            description: 'male', 'female', or 'unknown'.
+            description: Gender of patient (male, female, or unknown)
           - name: birth_date
             description: YYYY-mm-dd date format.
 
@@ -33,10 +33,11 @@ sources:
           - name: ms_drg
             description: The MS-DRG associated with the acute inpatient encounter.
           - name: encounter_type
-            description: 'acute inpatient' for all rows.
+            description: All rows should have the same string (acute inpatient).
 
       - name: condition
         description: Staging table with condition data.
+        columns:
           - name: encounter_id
             description: Unique ID for each visit.
           - name: code
@@ -46,6 +47,7 @@ sources:
 
       - name: procedure
         description: Staging table with procedure data.
+        columns:
           - name: encounter_id
             description: Unique ID for each visit.
           - name: code

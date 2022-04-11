@@ -1,12 +1,12 @@
-name: 'readmissions'   
-version: '0.0.1'
+name: 'readmissions_syntegra_redshift_combined_data'
+version: '0.1.5'
 config-version: 2
-profile:                       # configuration required: use your dbt profile
+profile: syntegra_redshift   # configuration required
 
 vars:
-    source_name:               # configuration required
-    source_database:           # configuration required
-    source_schema:             # configuration required
+    source_name: tuva        # configuration required
+    source_database: tuva    # configuration required
+    source_schema: staging_union       # configuration required
 
     src_patient: "{{ source(var('source_name'),'patient') }}"
     src_encounter: "{{ source(var('source_name'),'encounter') }}"
@@ -25,15 +25,15 @@ clean-targets:
     - "dbt_modules"
 
 models:
-  readmissions:
-    +database:    # configuration required: database where readmissions models will be in
-    +schema:      # configuration required: schema where readmissions models will be in
+  readmissions_syntegra_redshift_combined_data:
+    +database: tuva
+    +schema: readmissions
 
 seeds:
-  readmissions:
-    +database:    # configuration required: database where seed files will be in
-    +schema: terminology
-    +tags: terminology
+  readmissions_syntegra_redshift_combined_data:
+    +database: tuva
+    +schema: terminology_readmissions
+    +tags: terminology_readmissions
     +quote_columns: false
     discharge_status_code:
       +column_types: {discharge_status_code: varchar(8)}
