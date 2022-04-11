@@ -1,12 +1,12 @@
-name: 'readmissions'   
-version: '0.0.1'
+name: 'readmissions_syntegra_snowflake_ihm'
+version: '0.1.5'
 config-version: 2
-profile:                       # configuration required: use your dbt profile
+profile: syntegra_snowflake   # configuration required
 
 vars:
-    source_name:               # configuration required
-    source_database:           # configuration required
-    source_schema:             # configuration required
+    source_name: ihm        # configuration required
+    source_database: ihm    # configuration required
+    source_schema: staging       # configuration required
 
     src_patient: "{{ source(var('source_name'),'patient') }}"
     src_encounter: "{{ source(var('source_name'),'encounter') }}"
@@ -25,13 +25,13 @@ clean-targets:
     - "dbt_modules"
 
 models:
-  readmissions:
-    +database:    # configuration required: database where readmissions models will be in
-    +schema:      # configuration required: schema where readmissions models will be in
+  readmissions_syntegra_snowflake_ihm:
+    +database: ihm
+    +schema: readmissions
 
 seeds:
-  readmissions:
-    +database:    # configuration required: database where seed files will be in
+  readmissions_syntegra_snowflake_ihm:
+    +database: ihm
     +schema: terminology
     +tags: terminology
     +quote_columns: false
