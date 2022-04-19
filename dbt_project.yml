@@ -12,7 +12,7 @@ config-version: 2
 # This setting configures which "profile" dbt uses for this project.
 # You need to replace 'default' with the profile name you use to
 # connect to your data warehouse.
-profile: 'default'    # configuration required
+profile: 'default'    # CONFIGURATION REQUIRED
 
 
 # To run this 'readmissions' dbt project, you need to map your
@@ -36,9 +36,9 @@ profile: 'default'    # configuration required
 # source_schema to whatever database name and schema name you
 # decide to store your data sources in:
 vars:
-    source_name: tuva        # configuration optional
-    source_database: tuva    # configuration optional
-    source_schema: core      # configuration optional
+    source_name: tuva        
+    source_database: tuva    
+    source_schema: core      
 
     src_patient: "{{ source(var('source_name'),'patient') }}"
     src_encounter: "{{ source(var('source_name'),'encounter') }}"
