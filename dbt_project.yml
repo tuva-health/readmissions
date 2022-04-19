@@ -5,14 +5,14 @@
 # Unsurprisingly, our convention at Tuva is to give this project
 # (which calculates readmissions) the name 'readmissions'.
 # You probably won't want to change this.
-name: 'default'
+name: 'readmissions'
 version: '0.0.1'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
 # You need to replace 'default' with the profile name you use to
 # connect to your data warehouse.
-profile: 'tuva_snowflake'    # configuration required
+profile: 'default'    # configuration required
 
 
 # To run this 'readmissions' dbt project, you need to map your
