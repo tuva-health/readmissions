@@ -24,5 +24,5 @@ from
     {{ ref('stg_procedure') }} aa
     left join {{ ref('icd_10_pcs') }} bb
     on aa.procedure_code = bb.icd_10_pcs
-    left join {{ ref('ccs_icd_10_pcs') }} cc
+    left join {{ ref('icd_10_pcs_to_ccs') }} cc
     on aa.procedure_code = cc.icd_10_pcs

@@ -35,7 +35,7 @@ from
     {{ ref('stg_diagnosis') }} aa
     left join {{ ref('icd_10_cm') }} bb
     on aa.diagnosis_code = bb.icd_10_cm
-    left join {{ ref('ccs_icd_10_cm') }} cc
+    left join {{ ref('icd_10_cm_to_ccs') }} cc
     on aa.diagnosis_code = cc.icd_10_cm
     left join {{ ref('primary_diagnosis_count') }} dd
     on aa.encounter_id = dd.encounter_id
