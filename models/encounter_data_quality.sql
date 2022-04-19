@@ -31,16 +31,16 @@ select
 	else 0
     end as admit_after_discharge_flag,
     case
-        when aa.discharge_status_code is null then 1
+        when aa.discharge_disposition_code is null then 1
 	else 0
-    end as missing_discharge_status_code_flag,
+    end as missing_discharge_disposition_code_flag,
     case
         when
-	    (aa.discharge_status_code is not null)
+	    (aa.discharge_disposition_code is not null)
 	    and
-	    (cc.discharge_status_code is null) then 1
+	    (cc.discharge_disposition_code is null) then 1
 	else 0
-    end as invalid_discharge_status_code_flag,
+    end as invalid_discharge_disposition_code_flag,
     case
         when (  (dd.primary_dx_count is null)
 	        or
@@ -79,8 +79,8 @@ select
 from {{ ref('stg_encounter') }} aa
      left join {{ ref('diagnosis_ccs') }} bb
      on aa.encounter_id = bb.encounter_id
-     left join {{ ref('discharge_status_code') }} cc
-     on aa.discharge_status_code = cc.discharge_status_code
+     left join {{ ref('discharge_disposition_code') }} cc
+     on aa.discharge_disposition_code = cc.discharge_disposition_code
      left join {{ ref('primary_diagnosis_count') }} dd
      on aa.encounter_id = dd.encounter_id
 ),
@@ -102,9 +102,9 @@ select
 	    or
 	    (admit_after_discharge_flag = 1)
 	    or
-	    (missing_discharge_status_code_flag = 1)
+	    (missing_discharge_disposition_code_flag = 1)
 	    or
-	    (invalid_discharge_status_code_flag = 1)
+	    (invalid_discharge_disposition_code_flag = 1)
 	    or
 	    (missing_primary_diagnosis_flag = 1)
 	    or
@@ -121,8 +121,8 @@ select
     missing_admit_date_flag,
     missing_discharge_date_flag,
     admit_after_discharge_flag,
-    missing_discharge_status_code_flag,
-    invalid_discharge_status_code_flag,
+    missing_discharge_disposition_code_flag,
+    invalid_discharge_disposition_code_flag,
     missing_primary_diagnosis_flag,
     multiple_primary_diagnoses_flag,
     invalid_primary_diagnosis_code_flag,

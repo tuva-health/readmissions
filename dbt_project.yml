@@ -1,42 +1,89 @@
-name: 'readmissions_syntegra_redshift_combined_data'
-version: '0.1.5'
-config-version: 2
-profile: syntegra_redshift   # configuration required
 
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models.
+# Unsurprisingly, our convention at Tuva is to give this project
+# (which calculates readmissions) the name 'readmissions'.
+# You probably won't want to change this.
+name: 'default'
+version: '0.0.1'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+# You need to replace 'default' with the profile name you use to
+# connect to your data warehouse.
+profile: 'tuva_snowflake'    # configuration required
+
+
+# To run this 'readmissions' dbt project, you need to map your
+# data into the input layer for this project, which consists of
+# the following 4 tables that you must create in your data warehouse:
+#    [1] patient
+#    [2] encounter
+#    [3] condition
+#    [4] procedure
+# Our convention at Tuva is to have a database called 'tuva'
+# in your data warehouse where all Tuva projects live.
+# Inside this 'tuva' database, we have a schema called 'core',
+# where all data sources needed to run all Tuva projects live.
+# Here we define variables to name the 4 data sources
+# that are needed to run this 'readmissions' dbt project.
+# We recommend following our convention of creating a database
+# named 'tuva', and putting the required data
+# sources for this project in a schema called 'core' within the
+# 'tuva' database. If you would like to change that organizational
+# convention, here you must change source_database and
+# source_schema to whatever database name and schema name you
+# decide to store your data sources in:
 vars:
-    source_name: tuva        # configuration required
-    source_database: tuva    # configuration required
-    source_schema: staging_union       # configuration required
+    source_name: tuva        # configuration optional
+    source_database: tuva    # configuration optional
+    source_schema: core      # configuration optional
 
     src_patient: "{{ source(var('source_name'),'patient') }}"
     src_encounter: "{{ source(var('source_name'),'encounter') }}"
     src_diagnosis: "{{ source(var('source_name'),'condition') }}"
     src_procedure: "{{ source(var('source_name'),'procedure') }}"
 
+
+# These configurations specify where dbt should look for different types of files.
+# The `source-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
 source-paths: ["models"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
 data-paths: ["data"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
-target-path: "target"  
-clean-targets:         
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
     - "target"
     - "dbt_modules"
 
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# Our convention is to tell dbt to build all the models in this
+# 'readmissions' dbt project into a schema called 'readmissions' in
+# the 'tuva' database:
 models:
-  readmissions_syntegra_redshift_combined_data:
+  readmissions:
     +database: tuva
     +schema: readmissions
 
+# Our convention is to tell dbt to build all the terminology datasets
+# into a schema called 'terminology' in the 'tuva' database
+# within your data warehouse (these terminology datasets are seed
+# files in the 'data' folder of this repo)
 seeds:
-  readmissions_syntegra_redshift_combined_data:
+  readmissions:
     +database: tuva
-    +schema: terminology_readmissions
-    +tags: terminology_readmissions
+    +schema: terminology
+    +tags: terminology
     +quote_columns: false
-    discharge_status_code:
-      +column_types: {discharge_status_code: varchar(8)}
+    discharge_disposition_code:
+      +column_types: {discharge_disposition_code: varchar(8)}
     ms_drg:
       +column_types: {ms_drg: varchar(8)}
-

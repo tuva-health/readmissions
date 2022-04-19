@@ -14,7 +14,7 @@ select
     aa.patient_id,
     aa.admit_date,
     aa.discharge_date,
-    aa.discharge_status_code,
+    aa.discharge_disposition_code,
     aa.facility,
     aa.ms_drg,
     aa.discharge_date - aa.admit_date  as length_of_stay,
@@ -28,7 +28,7 @@ select
     end as planned_flag,
     dd.specialty_cohort,
     case
-        when aa.discharge_status_code = '20' then 1
+        when aa.discharge_disposition_code = '20' then 1
 	else 0
     end as died_flag,
     ee.diagnosis_ccs,
@@ -36,8 +36,8 @@ select
     ee.missing_admit_date_flag,
     ee.missing_discharge_date_flag,
     ee.admit_after_discharge_flag,
-    ee.missing_discharge_status_code_flag,
-    ee.invalid_discharge_status_code_flag,
+    ee.missing_discharge_disposition_code_flag,
+    ee.invalid_discharge_disposition_code_flag,
     ee.missing_primary_diagnosis_flag,
     ee.multiple_primary_diagnoses_flag,
     ee.invalid_primary_diagnosis_code_flag,

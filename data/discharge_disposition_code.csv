@@ -1,4 +1,4 @@
-﻿discharge_status_code,description
+﻿discharge_disposition_code,description
 "00",Unknown Value (but present in data)
 "01",Discharged to home/self-care (routine charge)
 "02",Discharged/transferred to other short term general hospital for inpatient care.

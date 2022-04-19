@@ -13,7 +13,7 @@ select
     cast(patient_id as varchar) as patient_id,
     cast(encounter_start_date as date) as admit_date,
     cast(encounter_end_date as date) as discharge_date,
-    cast(discharge_disposition_code as varchar) as discharge_status_code,
+    cast(discharge_disposition_code as varchar) as discharge_disposition_code,
     cast(location as varchar) as facility,
     cast(ms_drg as varchar) as ms_drg
     

@@ -1,6 +1,6 @@
 
 -- Here we list encounter_ids that meet
--- the discharge_status_code requirements to be an
+-- the discharge_disposition_code requirements to be an
 -- index admission:
 --    *** Must NOT be discharged to another acute care hospital
 --    *** Must NOT have left against medical advice
@@ -14,13 +14,13 @@
 
 -- Encounters where the patient is discharged to
 -- another acute care hospital
--- (discharge_status_code = '02', which is:
+-- (discharge_disposition_code = '02', which is:
 -- 'Discharged/transferred to other short term
 --  general hospital for inpatient care.' )
 with acute_care_discharge as (
 select encounter_id
 from {{ ref('stg_encounter') }}
-where discharge_status_code = '02'
+where discharge_disposition_code = '02'
 ),
 
 
@@ -28,7 +28,7 @@ where discharge_status_code = '02'
 against_medical_advice as (
 select encounter_id
 from {{ ref('stg_encounter') }}
-where discharge_status_code = '07'   
+where discharge_disposition_code = '07'   
 ),
 
 
@@ -36,7 +36,7 @@ where discharge_status_code = '07'
 died as (
 select encounter_id
 from {{ ref('stg_encounter') }}
-where discharge_status_code = '20'   
+where discharge_disposition_code = '20'   
 ),
 
 
@@ -50,7 +50,7 @@ select encounter_id from died
 )
 
 
--- All discharges that meet the discharge_status_code
+-- All discharges that meet the discharge_disposition_code
 -- requirements to be an index admission
 select encounter_id
 from {{ ref('stg_encounter') }}
