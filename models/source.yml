@@ -33,7 +33,7 @@ sources:
           - name: ms_drg
             description: The MS-DRG associated with the acute inpatient encounter.
           - name: encounter_type
-            description: All rows should have the same string (acute inpatient).
+            description: Describes the kind of encounter this was.
 
       - name: condition
         description: Staging table with condition data.
@@ -44,6 +44,10 @@ sources:
             description: Primary diagnosis code for the inpatient encounter (ICD-10-CM).
           - name: diagnosis_rank
             description: Positive integer indicating diagnosis rank (1,2,3,...)
+          - name: code_type
+            description: Type of condition code (icd-9-cm, icd-10-cm, snomed-ct).
+          - name: condition_type
+            description: Type of condition recorded (problem, complaint, admit diagnosis, discharge diagnosis)
 
       - name: procedure
         description: Staging table with procedure data.
@@ -52,3 +56,5 @@ sources:
             description: Unique ID for each visit.
           - name: code
             description: Procedure code for a procedure performed during inpatient encounter.
+          - name: code_type
+            description: Indicates the type of procedure (cpt, icd-10-pcs)

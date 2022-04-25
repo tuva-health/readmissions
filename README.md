@@ -2,15 +2,31 @@
 
 # Readmissions 
 
-Check out the latest [DAG](https://tuva-health.github.io/readmissions/#!/overview?g_v=1)
+This is Tuva Health's Readmissions Mart, which is
+a dbt project to do hospital readmission analytics.
+It is based on the
+[CMS Readmission Measures Methodology](https://qualitynet.cms.gov/inpatient/measures/readmission/methodology)
+and includes other features,
+such as data quality checks specific to readmissions.
 
-Check out the [Tuva Project Google Sheet](https://docs.google.com/spreadsheets/d/1q6VBqGJ3PBW0vYD1wrsN5jmcP0cEXQNd3xTyTgtHlcU/edit#gid=0)
+Links of interest:
 
-Check out our [Docs](https://docs.tuvahealth.com/)
+- Short video giving a [high-level overview](https://www.youtube.com/watch?v=TCG_QCb63n4)
+  of what it looks like to do proper analytics on hospital readmissions
+
+- [Video explanation](https://www.youtube.com/watch?v=5pA-gm94PyU)
+  of how to run this readmissions dbt project
+
+- Latest Tuva Readmissions [DAG](https://tuva-health.github.io/readmissions/#!/overview?g_v=1)
+
+- The [Tuva Project Google Sheet](https://docs.google.com/spreadsheets/d/1q6VBqGJ3PBW0vYD1wrsN5jmcP0cEXQNd3xTyTgtHlcU/edit#gid=0) 
+
+- Tuva [Docs](https://docs.tuvahealth.com/)
+
 
 This package creates the CMS Hospital Wide Readmissions (HWR) measure.
 
-There are main output tables from this package are:
+The main output tables from this dbt project are:
 1. `encounter_augmented`: lists all acute inpatient encounters with fields that give extra information about the encounter (e.g. length_of_stay, index_admission_flag, planned_flag, specialty_cohort, etc.), as well as data quality flags.
 2. `readmission_summary`: lists all encounters that are not discarded due to data quality problems, together with fields giving extra information about the encounter and it's associated readmission (if the encounter had a readmission).
 
