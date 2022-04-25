@@ -9,7 +9,7 @@ It is based on the
 and includes other features,
 such as data quality checks specific to readmissions.
 
-Links of interest:
+## Links of interest
 
 - Short video giving a [high-level overview](https://www.youtube.com/watch?v=TCG_QCb63n4)
   of what it looks like to do proper analytics on hospital readmissions
@@ -24,7 +24,7 @@ Links of interest:
 - Tuva [Docs](https://docs.tuvahealth.com/)
 
 
-This package creates the CMS Hospital Wide Readmissions (HWR) measure.
+## Consuming output from this dbt project
 
 The main output tables from this dbt project are:
 1. `encounter_augmented`: lists all acute inpatient encounters with fields that give extra information about the encounter (e.g. length_of_stay, index_admission_flag, planned_flag, specialty_cohort, etc.), as well as data quality flags.
