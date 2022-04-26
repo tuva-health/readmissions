@@ -1,0 +1,9 @@
+
+version: 2
+
+models:
+  - name: index_discharge_requirement
+    description: "This model lists all encounters that meet the discharge disposition requirement to be an index admission."
+    columns:
+      - name: encounter_id
+        description: "The unique identifier for the encounter"

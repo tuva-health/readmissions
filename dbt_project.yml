@@ -6,13 +6,13 @@
 # (which calculates readmissions) the name 'readmissions'.
 # You probably won't want to change this.
 name: 'readmissions'
-version: '0.0.1'
+version: '0.1.1'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
 # You need to replace 'default' with the profile name you use to
 # connect to your data warehouse.
-profile: 'tuva_snowflake'    # CONFIGURATION REQUIRED
+profile: 'default'    # CONFIGURATION REQUIRED
 
 
 # To run this 'readmissions' dbt project, you need to map your

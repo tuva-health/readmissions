@@ -1,0 +1,9 @@
+
+version: 2
+
+models:
+  - name: planned_encounter
+    description: "This model gives a list of all encounter_ids that were planned encounters."
+    columns:
+      - name: encounter_id
+        description: "The unique identifier for the encounter"
