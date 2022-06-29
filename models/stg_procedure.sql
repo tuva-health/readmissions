@@ -12,5 +12,5 @@ select
     cast(encounter_id as varchar) as encounter_id,
     cast(code as varchar) as procedure_code
 
-from {{ var('src_procedure') }}
+from {{ var('procedure') }}
 where code_type = 'icd-10-pcs'

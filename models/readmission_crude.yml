@@ -3,6 +3,9 @@ version: 2
 
 models:
   - name: readmission_crude
+    config:
+      database: "{{ var('output_database') }}"
+      schema: "{{ var('output_schema') }}"
     description: "This model lists all encounters and whether they had a 'crude' readmission, meaning that the encounter had a hospitalization after discharge, without regard to all CMS readmission logic."
     columns:
       - name: encounter_id

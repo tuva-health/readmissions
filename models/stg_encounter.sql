@@ -17,7 +17,7 @@ select
     cast(location as varchar) as facility,
     cast(ms_drg as varchar) as ms_drg
     
-from {{ var('src_encounter') }}
+from {{ var('encounter') }}
 where encounter_type = 'acute inpatient'
 
 

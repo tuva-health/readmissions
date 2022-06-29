@@ -3,6 +3,9 @@ version: 2
 
 models:
   - name: encounter_augmented
+    config:
+      database: "{{ var('output_database') }}"
+      schema: "{{ var('output_schema') }}"
     description: "This model includes all encounters from the stg_encounter model, and for each encounter_id we add fields relevant for the encounter."
     columns:
       - name: encounter_id

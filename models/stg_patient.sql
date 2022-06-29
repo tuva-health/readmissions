@@ -13,6 +13,6 @@ select
     cast(gender as varchar) as gender,
     cast(birth_date as date) as birth_date
 
-from {{ var('src_patient') }}
+from {{ var('patient') }}
 
 

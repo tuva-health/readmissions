@@ -3,6 +3,9 @@ version: 2
 
 models:
   - name: readmission_summary
+    config:
+      database: "{{ var('output_database') }}"
+      schema: "{{ var('output_schema') }}"
     description: "This model includes all rows from the encounter_augmented model where disqualified_encounter_flag = 0 (all rows for encounters that are not disqualified for data quality issues). For each of these encounters we add fields to indicate whether it had a readmission and, when a readmission was present, to show relevant fields for the readmission."
     columns:
       - name: encounter_id

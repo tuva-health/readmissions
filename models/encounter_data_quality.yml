@@ -3,6 +3,9 @@ version: 2
 
 models:
   - name: encounter_data_quality
+    config:
+      database: "{{ var('output_database') }}"
+      schema: "{{ var('output_schema') }}"
     description: "This model has the same number of rows as the stg_encounter model. Here we have one row for every unique encounter in the stg_encounter model, and for each encounter we have a flag (disqualified_encounter_flag) to indicte if the encounter is disqualified from being useful for readmission measures. We also have other flags to indicate which specific data quality issues this encounter has that may disqualify it from being used in readmission measures."
     columns:
       - name: encounter_id

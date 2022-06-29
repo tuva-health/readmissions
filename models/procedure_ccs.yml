@@ -3,6 +3,9 @@ version: 2
 
 models:
   - name: procedure_ccs
+    config:
+      database: "{{ var('output_database') }}"
+      schema: "{{ var('output_schema') }}"
     description: "This model includes all procedures from the stg_procedure model and adds a valid_icd_10_pcs_flag to indicate if the ICD-10-PCS code for this procedure is valid. We also add the CCS procedure category associated with the procedure"
     columns:
       - name: encounter_id

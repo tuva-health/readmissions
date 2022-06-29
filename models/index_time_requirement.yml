@@ -3,6 +3,9 @@ version: 2
 
 models:
   - name: index_time_requirement
+    config:
+      database: "{{ var('output_database') }}"
+      schema: "{{ var('output_schema') }}"
     description: "This model lists all encounters that meet the time requirement to be an index admission."
     columns:
       - name: encounter_id

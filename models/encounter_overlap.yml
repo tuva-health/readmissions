@@ -3,6 +3,9 @@ version: 2
 
 models:
   - name: encounter_overlap
+    config:
+      database: "{{ var('output_database') }}"
+      schema: "{{ var('output_schema') }}"
     description: "This model lists all pairs of encounters that have some date overlap."
     columns:
       - name: patient_id

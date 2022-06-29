@@ -1,0 +1,118 @@
+version: 2
+
+seeds:
+  - name: acute_diagnosis_ccs
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: acute_diagnosis_icd_10_cm
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: always_planned_ccs_diagnosis_category
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: always_planned_ccs_procedure_category
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: discharge_disposition_code
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+      column_types:
+        discharge_disposition_code: varchar(8)
+
+  - name: exclusion_ccs_diagnosis_category
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: gender
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: icd_10_cm
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: icd_10_cm_to_ccs
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: icd_10_pcs
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: icd_10_pcs_to_ccs
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: ms_drg
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+      column_types:
+        ms_drg: varchar(8)
+
+  - name: potentially_planned_ccs_procedure_category
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: potentially_planned_icd_10_pcs
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: specialty_cohort
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
+
+  - name: surgery_gynecology_cohort
+    config:
+      database:  "{{ var('output_database') }}"
+      schema:  "{{ var('output_schema') }}"
+      tags: terminology
+      quote_columns: false
