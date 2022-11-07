@@ -4,8 +4,8 @@ version: 2
 models:
   - name: index_admission
     config:
-      database: "{{ var('output_database') }}"
-      schema: "{{ var('output_schema') }}"
+      database: "{{ var('readmissions_output_database', var('output_database')) }}"
+      schema: "{{ var('readmissions_output_schema', var('output_schema')) }}"
     description: "This model lists all index admissions for the hospital wide readmissions measure. These represent encounter_ids that meet the requirements to be an index admission for the HWR measure."
     columns:
       - name: encounter_id

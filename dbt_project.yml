@@ -7,16 +7,12 @@ config-version: 2
 profile: 'default'
 
 vars:
-    source_name: core                  # configuration required
-                                       # name describing the dataset feeding
-                                       # this project - typically matches input
-                                       # schema name
 
     input_database: tuva               # configuration required
                                        # name of the database where sources
                                        # feeding this project are stored
     
-    input_schema: core                 # configuration required
+    input_schema: dbt_fb_monorepo_core                 # configuration required
                                        # name of the schema where sources
                                        # feeding this project are stored
 
@@ -24,14 +20,24 @@ vars:
                                        # name of the database where output of
                                        # this project should be written
 
-    output_schema: readmissions        # configuration required
+    output_schema: dbt_fb_monorepo_readmissionstest        # configuration required
                                        # name of the schema where output of this
                                        # schema should be written
+#
+#    patient: "{% if project_name == 'readmissions' %}{{ source('core','patient') }}{% else %}{{ref('patient')}}{% endif %}"
+#    encounter: "{% if project_name == 'readmissions' %}{{ source('core','encounter') }}{% else %}{{ref('encounter')}}{% endif %}"
+#    diagnosis: "{% if project_name == 'readmissions' %}{{ source('core','condition') }}{% else %}{{ref('condition')}}{% endif %}"
+#    procedure: "{% if project_name == 'readmissions' %}{{ source('core','procedure') }}{% else %}{{ref('procedure')}}{% endif %}"
 
-    patient: "{{ source(var('source_name'),'patient') }}"
-    encounter: "{{ source(var('source_name'),'encounter') }}"
-    diagnosis: "{{ source(var('source_name'),'condition') }}"
-    procedure: "{{ source(var('source_name'),'procedure') }}"
+
+    patient: "{{ref('patient')}}"
+    encounter: "{{ref('encounter')}}"
+    diagnosis: "{{ref('condition')}}"
+    procedure: "{{ref('procedure')}}"
+#    terminology:
+#        'terminology:terminology_schema': forrest_test2
+
+
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be

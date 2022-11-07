@@ -33,7 +33,7 @@ select
     cc.ccs_diagnosis_category
 from
     {{ ref('stg_diagnosis') }} aa
-    left join {{ ref('icd_10_cm') }} bb
+    left join {{ ref('icd10cm') }} bb
     on aa.diagnosis_code = bb.icd_10_cm
     left join {{ ref('icd_10_cm_to_ccs') }} cc
     on aa.diagnosis_code = cc.icd_10_cm

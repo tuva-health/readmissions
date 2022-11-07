@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: core
-    database: "{{ var('input_database') }}"
-    schema: "{{ var('input_schema') }}"
+    database: tuva
+    schema: core
     tables:
       - name: patient
         description: Staging table with patient data.

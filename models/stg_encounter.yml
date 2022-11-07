@@ -4,8 +4,8 @@ version: 2
 models:
   - name: stg_encounter
     config:
-      database: "{{ var('output_database') }}"
-      schema: "{{ var('output_schema') }}"
+      database: "{{ var('readmissions_output_database', var('output_database')) }}"
+      schema: "{{ var('readmissions_output_schema', var('output_schema')) }}"
     description: "This is a staging table for the input layer. Each row represents a unique acute inpatient encounter."
     columns:
       - name: encounter_id

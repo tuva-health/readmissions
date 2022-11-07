@@ -4,8 +4,8 @@ version: 2
 models:
   - name: planned_encounter
     config:
-      database: "{{ var('output_database') }}"
-      schema: "{{ var('output_schema') }}"
+      database: "{{ var('readmissions_output_database', var('output_database')) }}"
+      schema: "{{ var('readmissions_output_schema', var('output_schema')) }}"
     description: "This model gives a list of all encounter_ids that were planned encounters."
     columns:
       - name: encounter_id

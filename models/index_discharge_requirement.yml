@@ -4,8 +4,8 @@ version: 2
 models:
   - name: index_discharge_requirement
     config:
-      database: "{{ var('output_database') }}"
-      schema: "{{ var('output_schema') }}"
+      database: "{{ var('readmissions_output_database', var('output_database')) }}"
+      schema: "{{ var('readmissions_output_schema', var('output_schema')) }}"
     description: "This model lists all encounters that meet the discharge disposition requirement to be an index admission."
     columns:
       - name: encounter_id

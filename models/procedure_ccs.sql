@@ -22,7 +22,7 @@ select
     cc.ccs_procedure_category
 from
     {{ ref('stg_procedure') }} aa
-    left join {{ ref('icd_10_pcs') }} bb
+    left join {{ ref('icd10pcs') }} bb
     on aa.procedure_code = bb.icd_10_pcs
     left join {{ ref('icd_10_pcs_to_ccs') }} cc
     on aa.procedure_code = cc.icd_10_pcs
