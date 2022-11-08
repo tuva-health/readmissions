@@ -1,15 +1,13 @@
-Welcome to your new dbt project!
+## Using Integration Tests
 
-### Using the starter project
+#### In CLI:
+- Open project in parent folder
+- Change terminal context to integration_tests folder
+- Make sure any parent package refs are sources and models in integration_tests
+- dbt deps before building and/or running
 
-Try running the following commands:
-- dbt run
-- dbt test
-
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+#### In Cloud:
+- In account settings > projects > project, set **project subdirectory** to `integration_tests`
+- Make sure any parent package refs are sources and models in integration_tests
+- dbt deps before building and/or running
+- If it's not working, try switching to classic ide and back 
