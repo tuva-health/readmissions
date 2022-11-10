@@ -1,41 +1,46 @@
 name: 'readmissions'
-version: '1.0.0'
+version: '0.1.0'
 config-version: 2
-
-# This setting configures which "profile" dbt uses for this project.
-# Configuration required for CLI users.  Cloud users can leave as 'default'
 profile: 'default'
 
+
 vars:
-    source_name: core                  # configuration required
-                                       # name describing the dataset feeding
-                                       # this project - typically matches input
-                                       # schema name
 
-    input_database: tuva               # configuration required
-                                       # name of the database where sources
-                                       # feeding this project are stored
-    
-    input_schema: core                 # configuration required
-                                       # name of the schema where sources
-                                       # feeding this project are stored
 
-    output_database: tuva               # configuration required
-                                       # name of the database where output of
-                                       # this project should be written
+## optional output config option 1 (configs apply to all tuva packages)
+#    tuva_database: tuva                                     # optional: name of the database where tables from this package will be written
+#                                                            # default: tuva
+#
+#    tuva_schema_prefix: pkg                                 # optional: prefix (+_) that will be prerpended to all tuva package schema defaults
+#                                                            # default schema: readmissions (no prefix by default
 
-    output_schema: readmissions        # configuration required
-                                       # name of the schema where output of this
-                                       # schema should be written
 
-    patient: "{{ source(var('source_name'),'patient') }}"
-    encounter: "{{ source(var('source_name'),'encounter') }}"
-    diagnosis: "{{ source(var('source_name'),'condition') }}"
-    procedure: "{{ source(var('source_name'),'procedure') }}"
 
-# These configurations specify where dbt should look for different types of files.
-# The `source-paths` config, for example, states that models in this project can be
-# found in the "models/" directory. You probably won't need to change these!
+## optional output config option 2 (package specific config), overrides option 1
+#  claims_preprocessing_database: tuva                     # optional: name of the database where tables from this package will be written
+#                                                          # default: tuva
+#
+#  claims_preprocessing_schema: pkg_core_test              # optional: name of the schema where tables from this package will be written
+#                                                          # default: core
+
+
+
+### optional overrides for input data, only for use as a project
+#    readmissions_input_database: tuva                       # optional: name of the database where tables from this package will be written
+#                                                            # default: tuva
+#
+#    readmissions_input_schema: pkg_core                     # optional: name of the schema where tables from this package will be written
+#                                                            # default: core
+
+
+
+    patient: "{% if project_name == 'readmissions' %}{{ source('core','patient') }}{% else %}{{ref('claims_preprocessing__patient')}}{% endif %}"
+    encounter: "{% if project_name == 'readmissions' %}{{ source('core','encounter') }}{% else %}{{ref('claims_preprocessing__encounter')}}{% endif %}"
+    diagnosis: "{% if project_name == 'readmissions' %}{{ source('core','condition') }}{% else %}{{ref('claims_preprocessing__condition')}}{% endif %}"
+    procedure: "{% if project_name == 'readmissions' %}{{ source('core','procedure') }}{% else %}{{ref('claims_preprocessing__procedure')}}{% endif %}"
+
+
+
 model-paths: ["models"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
