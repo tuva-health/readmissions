@@ -19,7 +19,7 @@ vars:
 #                                                            # default: tuva
 #
 #  readmissions_schema: test_readmissions                    # optional: name of the schema where tables from this package will be written
-#                                                            # default: core
+#                                                            # default: readmissions
 
 
 
