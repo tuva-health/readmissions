@@ -83,23 +83,3 @@ sources:
 
           - name: code_type
             description: Indicates the type of procedure (cpt, icd-10-pcs)
-#  - name: tuva_terminology        # configuration required
-#    database: tuva                # name of the terminology database
-#    schema: terminology           # name of the terminology schema
-#    tables:
-#      - name: acute_diagnosis_ccs
-#      - name: acute_diagnosis_icd_10_cm
-#      - name: always_planned_ccs_diagnosis_category
-#      - name: always_planned_ccs_procedure_category
-#      - name: discharge_disposition
-#      - name: exclusion_ccs_diagnosis_category
-#      - name: gender
-#      - name: icd_10_cm_to_ccs
-#      - name: icd_10_cm
-#      - name: icd_10_pcs_to_ccs
-#      - name: icd_10_pcs
-#      - name: ms_drg
-#      - name: potentially_planned_ccs_procedure_category
-#      - name: potentially_planned_icd_10_pcs
-#      - name: specialty_cohort
-#      - name: surgery_gynecology_cohort
