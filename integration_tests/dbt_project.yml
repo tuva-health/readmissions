@@ -25,10 +25,10 @@ vars:
 
 
 ## optional output config option 2 (package specific config), overrides option 1
-#  claims_preprocessing_database: tuva                     # optional: name of the database where tables from this package will be written
+#  readmissions_database: tuva                             # optional: name of the database where tables from this package will be written
 #                                                          # default: tuva
 #
-#  claims_preprocessing_schema: test_readmissions          # optional: name of the schema where tables from this package will be written
+#  readmissions_schema: test_readmissions                  # optional: name of the schema where tables from this package will be written
 #                                                          # default: readmissions
 
 
