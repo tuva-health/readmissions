@@ -5,23 +5,21 @@ profile: 'default'
 
 
 vars:
-
-
 ## optional output config option 1 (configs apply to all tuva packages)
 #    tuva_database: tuva                                     # optional: name of the database where tables from this package will be written
 #                                                            # default: tuva
 #
-#    tuva_schema_prefix: pkg                                 # optional: prefix (+_) that will be prerpended to all tuva package schema defaults
+#    tuva_schema_prefix: test                                # optional: prefix (+_) that will be prerpended to all tuva package schema defaults
 #                                                            # default schema: readmissions (no prefix by default
 
 
 
 ## optional output config option 2 (package specific config), overrides option 1
-#  claims_preprocessing_database: tuva                     # optional: name of the database where tables from this package will be written
-#                                                          # default: tuva
+#  claims_preprocessing_database: tuva                       # optional: name of the database where tables from this package will be written
+#                                                            # default: tuva
 #
-#  claims_preprocessing_schema: pkg_core_test              # optional: name of the schema where tables from this package will be written
-#                                                          # default: core
+#  claims_preprocessing_schema: test_core                    # optional: name of the schema where tables from this package will be written
+#                                                            # default: core
 
 
 
@@ -29,7 +27,7 @@ vars:
 #    readmissions_input_database: tuva                       # optional: name of the database where tables from this package will be written
 #                                                            # default: tuva
 #
-#    readmissions_input_schema: pkg_core                     # optional: name of the schema where tables from this package will be written
+#    readmissions_input_schema: test_core                    # optional: name of the schema where tables from this package will be written
 #                                                            # default: core
 
 
