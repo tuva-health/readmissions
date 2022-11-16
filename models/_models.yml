@@ -7,7 +7,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: diagnosis_ccs
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model includes all encounter_ids from the stg_diagnosis table that have one and only one primary diagnosis code associated with them. There is one row for each of these encounters, namely, the row corresponding to the unique primary diagnosis code of the encounter. Therefore, the number of rows in this model is equal to the number of encounter_ids in the stg_diagnosis model that have one and only one primary diagnosis code. We add a valid_icd_10_cm_flag to indicate if the primary diagnosis code for the encounter is a valid ICD-10-CM code. We also add the CCS diagnosis category associated with the primary diagnosis code of the encounter."
     columns:
@@ -27,7 +26,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: encounter_augmented
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model includes all encounters from the stg_encounter model, and for each encounter_id we add fields relevant for the encounter."
     columns:
@@ -85,7 +83,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: encounter_data_quality
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model has the same number of rows as the stg_encounter model. Here we have one row for every unique encounter in the stg_encounter model, and for each encounter we have a flag (disqualified_encounter_flag) to indicte if the encounter is disqualified from being useful for readmission measures. We also have other flags to indicate which specific data quality issues this encounter has that may disqualify it from being used in readmission measures."
     columns:
@@ -121,7 +118,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: encounter_overlap
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model lists all pairs of encounters that have some date overlap."
     columns:
@@ -137,7 +133,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: encounter_specialty_cohort
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model lists the specialty cohort associated with each inpatient encounter. All encounters in the stg_encounter model are present here, and each gets a specialty cohort assigned from the following list of 5 options: Surgery/Gynecology, Medicine, Cardiorespiratory, Cardiovascular, Neurology. Encounters that don't have a specialty cohort get 'Medicine' assigned by default."
     columns:
@@ -151,7 +146,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: exclusion
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model lists all encounters that are excluded from being index admissions because they belong to one of the exclusion categories."
     columns:
@@ -163,7 +157,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: index_admission
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model lists all index admissions for the hospital wide readmissions measure. These represent encounter_ids that meet the requirements to be an index admission for the HWR measure."
     columns:
@@ -175,7 +168,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: index_discharge_requirement
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model lists all encounters that meet the discharge disposition requirement to be an index admission."
     columns:
@@ -187,7 +179,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: index_time_requirement
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model lists all encounters that meet the time requirement to be an index admission."
     columns:
@@ -199,7 +190,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: planned_encounter
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model gives a list of all encounter_ids that were planned encounters."
     columns:
@@ -211,7 +201,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: primary_diagnosis_count
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model includes a count of primary diagnoses related to each encounter_id in the stg_diagnosis model. In theory, each encounter_id should only have a single primary diagnosis, but this model checks how many primary diagnoses each encounter_id has in the dataset."
     columns:
@@ -225,7 +214,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: procedure_ccs
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model includes all procedures from the stg_procedure model and adds a valid_icd_10_pcs_flag to indicate if the ICD-10-PCS code for this procedure is valid. We also add the CCS procedure category associated with the procedure"
     columns:
@@ -243,7 +231,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: readmission_crude
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model lists all encounters and whether they had a 'crude' readmission, meaning that the encounter had a hospitalization after discharge, without regard to all CMS readmission logic."
     columns:
@@ -266,7 +253,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: readmission_summary
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This model includes all rows from the encounter_augmented model where disqualified_encounter_flag = 0 (all rows for encounters that are not disqualified for data quality issues). For each of these encounters we add fields to indicate whether it had a readmission and, when a readmission was present, to show relevant fields for the readmission."
     columns:
@@ -336,7 +322,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: stg_diagnosis
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This is a staging table for the input layer. Each row represents a unique diagnosis a patient got in an encouter. All diagnoses available in the input data set are present here."
     columns:
@@ -352,7 +337,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: stg_encounter
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This is a staging table for the input layer. Each row represents a unique acute inpatient encounter."
     columns:
@@ -376,7 +360,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: stg_patient
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This is a staging table for the input layer. Each row represents a unique patient."
     columns:
@@ -392,7 +375,6 @@ models:
       schema: |
         {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_readmissions{% else %}readmissions{%- endif -%}
       alias: stg_procedure
-      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
       tags: readmissions
     description: "This is a staging table for the input layer. Each row represents a unique procedure a patient got in an encouter. All procedures available in the input data set are present here."
     columns:
