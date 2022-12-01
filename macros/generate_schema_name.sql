@@ -3,10 +3,6 @@
     See https://docs.getdbt.com/docs/building-a-dbt-project/building-models/using-custom-schemas for the original macro.
 #}
 
-{% macro generate_schema_name(custom_schema_name, node) -%}
-  {{ return(adapter.dispatch('generate_schema_name')(custom_schema_name, node)) }}
-{%- endmacro %}
-
 {% macro default__generate_schema_name(custom_schema_name, node) -%}
     {{ custom_schema_name }}
 {%- endmacro %}
