@@ -2,35 +2,42 @@ name: 'integration_tests'
 version: '1.0.0'
 config-version: 2
 
-profile: 'default'
+profile: 'default_redshift'
 
 
 
 vars:
-### optional overrides for input data, only for integration_test or use as a project
-#  readmissions_input_database: tuva                       # optional: name of the database where sources feeding this prorject are stored
-#                                                          # default: tuva
-#
-#  readmissions_input_schema: test_core                    # optional: name of the schema where sources feeding this project are stored
-#                                                          # default: core
+### output config option 1, applies to all tuva packages
+#  tuva_database: tuva
+#  tuva_schema_prefix: test
+
+### output config option 2, applies to readmissions, overrides option 1
+#  readmissions_database: tuva
+#  readmissions_schema: test_readmissions
+
+
+### input config option 1, applies to all SmartMarts
+#  core_condition_override: "{{ref('condition')}}"
+#  core_patient_override:   "{{ref('patient')}}"
+#  core_encounter_override: "{{ref('encounter')}}"
+#  core_procedure_override: "{{ref('procedure')}}"
+
+
+### input config option 2, applies to readmissions, overrides option 1
+#  readmissions_condition_override: "{{ref('condition')}}"
+#  readmissions_patient_override:   "{{ref('patient')}}"
+#  readmissions_encounter_override: "{{ref('encounter')}}"
+#  readmissions_procedure_override: "{{ref('procedure')}}"
 
 
 
-## optional output config option 1 (all tuva packages)
-#  tuva_database: tuva                                     # optional: name of the database where tables from this package will be written
-#                                                          # default: tuva
-#
-#  tuva_schema_prefix: test                                # optional: name of the schema where tables from this package will be written
-#                                                          # default: readmissions
+### enabled/disabled configs
 
+## applies to all packages
+#  tuva_packages_enabled: false
 
-## optional output config option 2 (package specific config), overrides option 1
-#  readmissions_database: tuva                             # optional: name of the database where tables from this package will be written
-#                                                          # default: tuva
-#
-#  readmissions_schema: test_readmissions                  # optional: name of the schema where tables from this package will be written
-#                                                          # default: readmissions
-
+## applies to readmissions only
+#  readmissions_enabled: true
 
 
 model-paths: ["models"]
@@ -39,6 +46,7 @@ test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+docs-paths: ["docs"]
 
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`

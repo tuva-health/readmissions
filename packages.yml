@@ -1,3 +1,6 @@
 packages:
-  - package: tuva-health/terminology
-    version: [">=0.1.2","<1.0.0"]
+#  - package: tuva-health/terminology
+#    version: [">=0.1.2","<1.0.0"]
+#  - local: C:\Users\forre\PycharmProjects\terminology
+  - git: "https://github.com/tuva-health/terminology.git"
+    revision: modularization

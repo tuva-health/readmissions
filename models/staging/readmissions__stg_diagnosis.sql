@@ -14,7 +14,7 @@ select
     cast(code as varchar) as diagnosis_code,
     cast(diagnosis_rank as integer) as diagnosis_rank
 
-from {{ var('diagnosis') }}
+from {{var('condition')}}
 where code_type = 'icd-10-cm' and condition_type = 'discharge diagnosis'
 
 
