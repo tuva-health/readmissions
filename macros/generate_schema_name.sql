@@ -4,7 +4,9 @@
 #}
 
 {% macro generate_schema_name(custom_schema_name, node) -%}
+  {{ return(adapter.dispatch('generate_schema_name')(custom_schema_name, node)) }}
+{%- endmacro %}
 
+{% macro default__generate_schema_name(custom_schema_name, node) -%}
     {{ custom_schema_name }}
-
 {%- endmacro %}

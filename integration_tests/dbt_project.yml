@@ -2,13 +2,13 @@ name: 'integration_tests'
 version: '1.0.0'
 config-version: 2
 
-profile: 'default_redshift'
+profile: 'default'
 
 
 
 vars:
 ### output config option 1, applies to all tuva packages
-#  tuva_database: tuva
+  tuva_database: dev_forrest
 #  tuva_schema_prefix: test
 
 ### output config option 2, applies to readmissions, overrides option 1
@@ -34,10 +34,14 @@ vars:
 ### enabled/disabled configs
 
 ## applies to all packages
-#  tuva_packages_enabled: false
+  tuva_packages_enabled: false
 
 ## applies to readmissions only
-#  readmissions_enabled: true
+  readmissions_enabled: true
+
+dispatch:
+  - macro_namespace: dbt
+    search_order: ['integration_tests', 'readmissions', 'dbt']
 
 
 model-paths: ["models"]
