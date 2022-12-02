@@ -59,4 +59,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   integration_tests:
-    +materialized: ephemeral
+#    +materialized: ephemeral
+    +database: tuva
