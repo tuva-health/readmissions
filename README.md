@@ -12,7 +12,7 @@ For information on data models and to view the entire DAG check out our dbt [Doc
 
 This package has been tested on **Snowflake** and **Redshift**.
 
-## 🔌 What versions of dbt are supported?
+## 📚 What versions of dbt are supported?
 
 This package requires you to have dbt installed and a functional dbt project running on dbt version `1.2.x` or higher.
 
