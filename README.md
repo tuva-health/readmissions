@@ -58,14 +58,14 @@ vars:
 # refs here:
   core_patient_override:   "{{ref('patient')}}"
   core_encounter_override: "{{ref('encounter')}}"
-	core_condition_override: "{{ref('condition')}}"
+  core_condition_override: "{{ref('condition')}}"
   core_procedure_override: "{{ref('procedure')}}"
 
 # These variables name the database and schemas that the
 # output of the Readmissions package will be dumped into:
-	tuva_database:  tuva     # make sure this database exists in your data warehouse
-	readmissions_schema: readmissions
-	terminology_schema: terminology
+  tuva_database:  tuva     # make sure this database exists in your data warehouse
+  readmissions_schema: readmissions
+  terminology_schema: terminology
 
 # By default, the Readmissions package will import all
 # Tuva Terminology files. If you are running the Readmissions
