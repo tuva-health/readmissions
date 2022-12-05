@@ -26,11 +26,6 @@ vars:
         {%- else %}{{ref('claims_preprocessing__condition')}}
         {% endif %}
 
-#    patient: "{{ var('readmissions_patient_override',var('core_patient_override',ref('claims_preprocessing__patient'))) }}"
-#    encounter: "{{ var('readmissions_encounter_override',var('core_encounter_override',ref('claims_preprocessing__encounter')))}}"
-#    condition: "{{ var('readmissions_condition_override', var('core_condition_override',ref('claims_preprocessing__condition'))) }}"
-#    procedure: "{{ var('readmissions_procedure_override',var('core_procedure_override',ref('claims_preprocessing__procedure'))) }}"
-
 
 model-paths: ["models"]
 analysis-paths: ["analysis"]

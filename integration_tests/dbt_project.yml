@@ -8,8 +8,8 @@ profile: 'default'
 
 vars:
 ### output config option 1, applies to all tuva packages
-  tuva_database: dev_forrest
-#  tuva_schema_prefix: test
+  tuva_database: dev_user
+  tuva_schema_prefix: test
 
 ### output config option 2, applies to readmissions, overrides option 1
 #  readmissions_database: tuva
@@ -22,6 +22,12 @@ vars:
 #  core_encounter_override: "{{ref('encounter')}}"
 #  core_procedure_override: "{{ref('procedure')}}"
 
+## you can also point these to sources
+#  core_condition_override: "{{source('core','condition')}}"
+#  core_patient_override:   "{{source('core','patient')}}"
+#  core_encounter_override: "{{source('core','encounter')}}"
+#  core_procedure_override: "{{source('core','procedure')}}"
+
 
 ### input config option 2, applies to readmissions, overrides option 1
 #  readmissions_condition_override: "{{ref('condition')}}"
@@ -32,7 +38,6 @@ vars:
 
 
 ### enabled/disabled configs
-
 ## applies to all packages
   tuva_packages_enabled: false
 
@@ -41,7 +46,7 @@ vars:
 
 dispatch:
   - macro_namespace: dbt
-    search_order: ['integration_tests', 'readmissions', 'dbt']
+    search_order: [ 'readmissions', 'dbt']
 
 
 model-paths: ["models"]
@@ -52,12 +57,12 @@ macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 docs-paths: ["docs"]
 
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+target-path: "target"
+clean-targets:
   - "target"
   - "dbt_packages"
 
 models:
   integration_tests:
-#    +materialized: ephemeral
-    +database: tuva
+    +materialized: ephemeral
+#    +database: dev_user
