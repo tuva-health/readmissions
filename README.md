@@ -31,7 +31,7 @@ The Tuva Project is a collection of dbt packages that build healthcare concepts 
 
 ### **Step 1:**
 
-First you must create the necessary input tables as models within your dbt project so that the Tuva package of interest can reference them using ref() functions. To run this Readmissions package, you must create **these 4 tables** as models within your dbt project.
+First you must create the necessary input tables as models within your dbt project so that the Tuva package of interest can reference them using ref() functions. To run this Readmissions package, you must create [these 4 tables](https://tuva-health.github.io/readmissions/#!/model/model.readmissions_input.condition) as models within your dbt project.
 
 ### **Step 2:**
 
