@@ -21,9 +21,9 @@ vars:
         {%- else %}{{ref('claims_preprocessing__condition')}}
         {% endif %}
     procedure: |
-        {% if var('readmissions_condition_override',none) is not none %}{{var('readmissions_condition_override')}}
-        {%- elif var('core_condition_override',none) is not none %}{{var('core_condition_override')}}
-        {%- else %}{{ref('claims_preprocessing__condition')}}
+        {% if var('readmissions_procedure_override',none) is not none %}{{var('readmissions_procedure_override')}}
+        {%- elif var('core_procedure_override',none) is not none %}{{var('core_procedure_override')}}
+        {%- else %}{{ref('claims_preprocessing__procedure')}}
         {% endif %}
 
 
