@@ -8,7 +8,7 @@ profile: 'default'
 
 vars:
 ### output config option 1, applies to all tuva packages
-  tuva_database: dev_forrest
+  tuva_database: dev_user
 #  tuva_schema_prefix: test
 
 ### output config option 2, applies to readmissions, overrides option 1
