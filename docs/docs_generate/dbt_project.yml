@@ -1,4 +1,4 @@
-name: 'lean_input'
+name: 'readmissions_input'
 version: '1.0.0'
 config-version: 2
 
@@ -7,11 +7,16 @@ profile: 'default'
 
 
 vars:
-  terminology_enabled: false
+  tuva_packages_enabled: false
+  readmissions_enabled: true
   readmissions_condition_override: "{{ref('condition')}}"
   readmissions_patient_override:   "{{ref('patient')}}"
   readmissions_encounter_override: "{{ref('encounter')}}"
   readmissions_procedure_override: "{{ref('procedure')}}"
+
+dispatch:
+  - macro_namespace: dbt
+    search_order: [ 'readmissions', 'dbt']
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -21,11 +26,11 @@ macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 docs-paths: ["documents"]
 
-target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+target-path: "target"
+clean-targets:
   - "target"
   - "dbt_packages"
 
 models:
-  lean_input:
+  readmissions_input:
     +materialized: view

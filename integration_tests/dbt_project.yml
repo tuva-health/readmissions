@@ -8,8 +8,8 @@ profile: 'default'
 
 vars:
 ### output config option 1, applies to all tuva packages
-  tuva_database: dev_user
-  tuva_schema_prefix: test
+  tuva_database: dev_forrest
+#  tuva_schema_prefix: test
 
 ### output config option 2, applies to readmissions, overrides option 1
 #  readmissions_database: tuva
@@ -43,6 +43,7 @@ vars:
 
 ## applies to readmissions only
   readmissions_enabled: true
+#  terminology_enabled: false
 
 dispatch:
   - macro_namespace: dbt
