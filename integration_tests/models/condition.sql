@@ -1,2 +1,2 @@
-select encounter_id, CODE, DIAGNOSIS_RANK, code_type, condition_type
+select encounter_id, code, diagnosis_rank, code_type, condition_type
 from {{source('core','condition')}}
