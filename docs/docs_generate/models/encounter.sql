@@ -1,3 +1,3 @@
-select encounter_id, PATIENT_ID,ENCOUNTER_START_DATE,ENCOUNTER_END_DATE,DISCHARGE_DISPOSITION_CODE
-     ,FACILITY_NPI,MS_DRG_CODE,ENCOUNTER_TYPE
+select encounter_id, patient_id,encounter_start_date,encounter_end_date,discharge_disposition_code
+     ,facility_npi,ms_drg_code,encounter_type
 from tuva.core.encounter
