@@ -6,7 +6,7 @@
 
 The Tuva Project's Readmissions package calculates hospital readmission measures on your healthcare data.  
 
-For a detailed overview of the methodology used in the package check out our [Knowledge Base](https://thetuvaproject.com/docs/methodology/hospital-readmissions).  
+For a detailed overview of the methodology used in the package check out our [Knowledge Base](https://thetuvaproject.com/docs/data-models/data-marts/readmissions).  
 
 For information on data models and to view the entire DAG check out our dbt [Docs](https://tuva-health.github.io/readmissions/#!/overview).
 
@@ -20,7 +20,7 @@ This package requires you to have dbt installed and a functional dbt project run
 
 ## ✅ How do I use this dbt package?
 
-Below are the steps to run this individual dbt package.  To run all packages in The Tuva Project, please refer to this README.
+Below are the steps to run this individual dbt package.  To run all packages in The Tuva Project, please refer to this [README](https://github.com/tuva-health/the_tuva_project#readme).
 
 ### Overview
 
