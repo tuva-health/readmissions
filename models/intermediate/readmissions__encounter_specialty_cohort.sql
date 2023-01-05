@@ -31,8 +31,8 @@ where
     or
     ccs_procedure_category in
            (select distinct ccs
-            from {{ ref('terminology__specialty_cohort') }}
-	    where specialty_cohort = 'Surgery/Gynecology' )
+            from {{ ref('terminology__specialty_cohort') }} sgsc
+	    where sgsc.specialty_cohort = 'Surgery/Gynecology' )
 ),
 
 
@@ -46,8 +46,8 @@ where
     and
     ccs_diagnosis_category in
            (select distinct ccs
-            from {{ ref('terminology__specialty_cohort') }}
-	    where specialty_cohort = 'Medicine' )
+            from {{ ref('terminology__specialty_cohort') }} msc
+	    where msc.specialty_cohort = 'Medicine' )
 ),
 
 
@@ -61,8 +61,8 @@ where
     and
     ccs_diagnosis_category in
            (select distinct ccs
-            from {{ ref('terminology__specialty_cohort') }}
-	    where specialty_cohort = 'Cardiorespiratory' )    
+            from {{ ref('terminology__specialty_cohort') }} crsc
+	    where crsc.specialty_cohort = 'Cardiorespiratory' )
 ),
 
 
@@ -76,8 +76,8 @@ where
     and
     ccs_diagnosis_category in
            (select distinct ccs
-            from {{ ref('terminology__specialty_cohort') }}
-	    where specialty_cohort = 'Cardiovascular' )    
+            from {{ ref('terminology__specialty_cohort') }} cvsc
+	    where cvsc.specialty_cohort = 'Cardiovascular' )
 ),
 
 
@@ -91,8 +91,8 @@ where
     and
     ccs_diagnosis_category in
            (select distinct ccs
-            from {{ ref('terminology__specialty_cohort') }}
-	    where specialty_cohort = 'Neurology' )    
+            from {{ ref('terminology__specialty_cohort') }} nsc
+	    where nsc.specialty_cohort = 'Neurology' )
 ),
 
 
@@ -101,16 +101,16 @@ where
 all_cohorts as (
 select encounter_id, 'Surgery/Gynecology' as specialty_cohort
 from surgery_gynecology
-union
+union distinct
 select encounter_id, 'Medicine' as specialty_cohort
 from medicine
-union
+union distinct
 select encounter_id, 'Cardiorespiratory' as specialty_cohort
 from cardiorespiratory
-union
+union distinct
 select encounter_id, 'Cardiovascular' as specialty_cohort
 from cardiovascular
-union
+union distinct
 select encounter_id, 'Neurology' as specialty_cohort
 from neurology
 ),

@@ -31,8 +31,8 @@ select
     bb.admit_date as Bi,
     bb.discharge_date as Bf,
     case
-        when (Ai between Bi and Bf) or (Af between Bi and Bf) or
-             (Bi between Ai and Af) or (Bf between Ai and Af)
+        when (aa.admit_date between bb.admit_date and bb.discharge_date) or (aa.discharge_date between bb.admit_date and bb.discharge_date) or
+             (bb.admit_date between aa.admit_date and aa.discharge_date) or (bb.discharge_date between aa.admit_date and aa.discharge_date)
         then 1
         else 0
     end as overlap

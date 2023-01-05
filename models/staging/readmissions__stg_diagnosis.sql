@@ -10,8 +10,8 @@
 
 
 select
-    cast(encounter_id as varchar) as encounter_id,
-    cast(code as varchar) as diagnosis_code,
+    cast(encounter_id as {{ dbt.type_string() }}) as encounter_id,
+    cast(code as {{ dbt.type_string() }}) as diagnosis_code,
     cast(diagnosis_rank as integer) as diagnosis_rank
 
 from {{var('condition')}}

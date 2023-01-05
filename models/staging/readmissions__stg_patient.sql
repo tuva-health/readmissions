@@ -10,8 +10,8 @@
 
 
 select
-    cast(patient_id as varchar) as patient_id,
-    cast(gender as varchar) as gender,
+    cast(patient_id as {{ dbt.type_string() }}) as patient_id,
+    cast(gender as {{ dbt.type_string() }}) as gender,
     cast(birth_date as date) as birth_date
 
 from {{ var('patient') }}

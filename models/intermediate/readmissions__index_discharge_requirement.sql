@@ -44,9 +44,9 @@ where discharge_disposition_code = '20'
 -- Union of all invalid discharges
 all_invalid_discharges as (
 select encounter_id from acute_care_discharge
-union
+union distinct
 select encounter_id from against_medical_advice
-union
+union distinct
 select encounter_id from died
 )
 

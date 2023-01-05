@@ -82,7 +82,7 @@ potentially_planned_that_are_actually_planned as (
 select *
 from potentially_planned_px_ccs
 where encounter_id not in (select * from acute_encounters)
-union
+union distinct
 select *
 from potentially_planned_px_icd_10_pcs
 where encounter_id not in (select * from acute_encounters)
@@ -92,9 +92,9 @@ where encounter_id not in (select * from acute_encounters)
 -- Aggregate of all encounter_ids for planned encounters
 all_planned_encounters as (
 select * from always_planned_px
-union
+union distinct
 select * from always_planned_dx
-union
+union distinct
 select * from potentially_planned_that_are_actually_planned
 )
 

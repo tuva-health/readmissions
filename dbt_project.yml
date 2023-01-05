@@ -1,30 +1,30 @@
 name: 'readmissions'
-version: '0.1.3'
+version: '0.1.5'
 config-version: 2
 profile: 'default'
 
 
 vars:
-    patient: |
+    patient: >
         {% if var('readmissions_patient_override',none) is not none %}{{var('readmissions_patient_override')}}
         {%- elif var('core_patient_override',none) is not none %}{{var('core_patient_override')}}
         {%- else %}{{ref('claims_preprocessing__patient')}}
-        {% endif %}
-    encounter: |
+        {%- endif %}
+    encounter: >
         {% if var('readmissions_encounter_override',none) is not none %}{{var('readmissions_encounter_override')}}
         {%- elif var('core_encounter_override',none) is not none %}{{var('core_encounter_override')}}
         {%- else %}{{ref('claims_preprocessing__encounter')}}
-        {% endif %}
-    condition: |
+        {%- endif %}
+    condition: >
         {% if var('readmissions_condition_override',none) is not none %}{{var('readmissions_condition_override')}}
         {%- elif var('core_condition_override',none) is not none %}{{var('core_condition_override')}}
         {%- else %}{{ref('claims_preprocessing__condition')}}
-        {% endif %}
-    procedure: |
+        {%- endif %}
+    procedure: >
         {% if var('readmissions_procedure_override',none) is not none %}{{var('readmissions_procedure_override')}}
         {%- elif var('core_procedure_override',none) is not none %}{{var('core_procedure_override')}}
         {%- else %}{{ref('claims_preprocessing__procedure')}}
-        {% endif %}
+        {%- endif %}
 
 
 model-paths: ["models"]

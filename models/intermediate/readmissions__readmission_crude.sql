@@ -40,7 +40,7 @@ select
     discharge_date,
     row_number() over(
         partition by patient_id order by admit_date, discharge_date
-    ) as encounter_sequence    
+    ) as encounter_seq
 from encounter_info
 ),
 
@@ -57,12 +57,12 @@ select
     end as had_readmission_flag,
     bb.admit_date - aa.discharge_date as days_to_readmit,
     case
-        when (bb.admit_date - aa.discharge_date) <= 30  then 1
+        when ({{ dbt.datediff("bb.admit_date", "aa.discharge_date", "day") }}) <= 30  then 1
 	else 0
     end as readmit_30_flag
 from encounter_sequence aa left join encounter_sequence bb
      on aa.patient_id = bb.patient_id
-     and aa.encounter_sequence + 1 = bb.encounter_sequence
+     and aa.encounter_seq + 1 = bb.encounter_seq
 )
 
 

@@ -10,8 +10,8 @@
 
 
 select
-    cast(encounter_id as varchar) as encounter_id,
-    cast(code as varchar) as procedure_code
+    cast(encounter_id as {{ dbt.type_string() }}) as encounter_id,
+    cast(code as {{ dbt.type_string() }}) as procedure_code
 
 from {{ var('procedure') }}
 where code_type = 'icd-10-pcs'

@@ -12,7 +12,7 @@ For information on data models and to view the entire DAG check out our dbt [Doc
 
 ## 🔌 What databases are supported?
 
-This package has been tested on **Snowflake** and **Redshift**.
+This package has been tested on **Snowflake** and **Redshift** and **BigQuery**.
 
 ## 📚 What versions of dbt are supported?
 
@@ -42,7 +42,7 @@ To import the Readmissions package, you need to include the following in your `
 ```yaml
 packages:
   - package: tuva-health/readmissions
-    version: 0.1.4
+    version: 0.1.5
 
 ```
 
