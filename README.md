@@ -6,7 +6,7 @@
 
 The Tuva Project's Readmissions package calculates hospital readmission measures on your healthcare data.  
 
-For a detailed overview of the methodology used in the package check out our [Knowledge Base](https://thetuvaproject.com/docs/readmissions).  
+For a detailed overview of the methodology used in the package check out our [Knowledge Base](https://thetuvaproject.com/docs/the-tuva-project/data-marts/readmissions).  
 
 For information on data models and to view the entire DAG check out our dbt [Docs](https://tuva-health.github.io/readmissions/#!/overview).
 
@@ -42,7 +42,7 @@ To import the Readmissions package, you need to include the following in your `
 ```yaml
 packages:
   - package: tuva-health/readmissions
-    version: 0.1.5
+    version: 0.1.4
 
 ```
 
