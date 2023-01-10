@@ -6,9 +6,9 @@ profile: 'default'
 
 
 
-vars:
-### output config option 1, applies to all tuva packages
-  tuva_database: dev_user
+#vars:
+#### output config option 1, applies to all tuva packages
+#  tuva_database: dev_user
 #  tuva_schema_prefix: test
 
 ### output config option 2, applies to readmissions, overrides option 1
@@ -39,10 +39,10 @@ vars:
 
 ### enabled/disabled configs
 ## applies to all packages
-  tuva_packages_enabled: false
-
-## applies to readmissions only
-  readmissions_enabled: true
+#  tuva_packages_enabled: false
+#
+### applies to readmissions only
+#  readmissions_enabled: true
 #  terminology_enabled: false
 
 dispatch:
