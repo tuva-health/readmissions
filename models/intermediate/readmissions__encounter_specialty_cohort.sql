@@ -156,7 +156,7 @@ with cohort_ranks as (
     left join {{ ref('terminology__surgery_gynecology_cohort') }} sgc
         on proc.procedure_code = sgc.icd_10_pcs
     left join {{ ref('terminology__specialty_cohort') }} sgsc
-        on proc.ccs_procedure_category = sgsc.ccs
+        on proc.ccs_procedure_category = sgsc.ccs and sgsc.specialty_cohort = 'Surgery/Gynecology'
     where sgc.icd_10_pcs is not null or sgsc.ccs is not null
 
     union all
@@ -182,3 +182,4 @@ left join main_encounter_cohort mec
     on enc.encounter_id = mec.encounter_id
 left join cohort_ranks
     on mec.main_c_rank = cohort_ranks.c_rank
+
