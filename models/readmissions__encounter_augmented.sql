@@ -9,7 +9,7 @@
 
 
 
-with encounter_augmented as (
+-- with encounter_augmented as (
 select
     aa.encounter_id,
     aa.patient_id,
@@ -57,9 +57,9 @@ from
     on aa.encounter_id = dd.encounter_id
     left join {{ ref('readmissions__encounter_data_quality') }} ee
     on aa.encounter_id = ee.encounter_id
-)
-
-
-
-select *
-from encounter_augmented
+-- )
+--
+--
+--
+-- select *
+-- from encounter_augmented

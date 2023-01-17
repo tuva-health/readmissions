@@ -17,7 +17,7 @@
 {{ config(materialized='view'
     ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
-
+/*
 
 -- All encounter_ids that have an ICD-10-PCS procedure code
 -- or a CCS procedure category that corresponds to the
@@ -135,3 +135,50 @@ from {{ ref('readmissions__stg_encounter') }} aa
 
 select *
 from cohorts_for_all_encounters
+
+*/
+
+with cohort_ranks as (
+    select 'Surgery/Gynecology' as cohort, 1 as c_rank
+    union all
+    select 'Cardiorespiratory' as cohort, 2 as c_rank
+    union all
+    select 'Cardiovascular' as cohort, 3 as c_rank
+    union all
+    select 'Neurology' as cohort, 4 as c_rank
+    union all
+    select 'Medicine' as cohort, 5 as c_rank
+)
+
+, all_encounter_cohorts as (
+    select proc.encounter_id, 1 as c_rank
+    from {{ ref('readmissions__procedure_ccs') }} proc
+    left join {{ ref('terminology__surgery_gynecology_cohort') }} sgc
+        on proc.procedure_code = sgc.icd_10_pcs
+    left join {{ ref('terminology__specialty_cohort') }} sgsc
+        on proc.ccs_procedure_category = sgsc.ccs
+    where sgc.icd_10_pcs is not null or sgsc.ccs is not null
+
+    union all
+
+    select diag.encounter_id, cohort_ranks.c_rank
+    from {{ ref('readmissions__diagnosis_ccs') }} diag
+    inner join {{ ref('terminology__specialty_cohort') }} sc
+        on diag.ccs_diagnosis_category = sc.ccs and sc.procedure_or_diagnosis = 'Diagnosis'
+    inner join cohort_ranks
+        on sc.specialty_cohort = cohort_ranks.cohort
+)
+
+, main_encounter_cohort as (
+    select encounter_id, min(c_rank) as main_c_rank
+    from all_encounter_cohorts
+    group by encounter_id
+
+)
+
+select enc.encounter_id, coalesce(cohort_ranks.cohort, 'Medicine') as specialty_cohort
+from {{ ref('readmissions__stg_encounter') }} enc
+left join main_encounter_cohort mec
+    on enc.encounter_id = mec.encounter_id
+left join cohort_ranks
+    on mec.main_c_rank = cohort_ranks.c_rank

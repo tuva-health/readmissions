@@ -5,31 +5,36 @@
 -- rate without taking into account all the CMS HWR logic.
 
 
-{{ config(materialize='table'
+{{ config(materialize='view'
     ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True)))  }}
 
 
 
 with encounter_info as (
 select
-    encounter_id,
-    patient_id,
-    admit_date,
-    discharge_date
-from {{ ref('readmissions__stg_encounter') }}
+    enc.encounter_id,
+    enc.patient_id,
+    enc.admit_date,
+    enc.discharge_date
+from {{ ref('readmissions__stg_encounter') }} enc
+left join {{ ref('readmissions__encounter_overlap') }} over_a
+    on enc.encounter_id = over_a.encounter_id_A
+left join {{ ref('readmissions__encounter_overlap') }} over_b
+    on enc.encounter_id = over_b.encounter_id_B
 where
     admit_date is not null
     and
     discharge_date is not null
     and
     admit_date <= discharge_date
-    and
-    encounter_id not in (select distinct encounter_id_A
-	                         from {{ ref('readmissions__encounter_overlap') }} )
-    and
-    encounter_id not in (select distinct encounter_id_B
-	                         from {{ ref('readmissions__encounter_overlap') }} )
-),
+--     and
+--     encounter_id not in (select distinct encounter_id_A
+-- 	                         from {{ ref('readmissions__encounter_overlap') }} )
+--     and
+--     encounter_id not in (select distinct encounter_id_B
+-- 	                         from {{ ref('readmissions__encounter_overlap') }} )
+and over_a.encounter_id_A is null and over_b.encounter_id_B is null
+    ),
 
 
 encounter_sequence as (
