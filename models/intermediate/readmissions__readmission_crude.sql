@@ -27,12 +27,6 @@ where
     discharge_date is not null
     and
     admit_date <= discharge_date
---     and
---     encounter_id not in (select distinct encounter_id_A
--- 	                         from {{ ref('readmissions__encounter_overlap') }} )
---     and
---     encounter_id not in (select distinct encounter_id_B
--- 	                         from {{ ref('readmissions__encounter_overlap') }} )
 and over_a.encounter_id_A is null and over_b.encounter_id_B is null
     ),
 
