@@ -33,8 +33,9 @@ inner join {{ ref('readmissions__index_time_requirement') }} b
     on a.encounter_id = b.encounter_id
 inner join {{ ref('readmissions__index_discharge_requirement') }} c
     on a.encounter_id = c.encounter_id
-inner join {{ ref('readmissions__exclusion') }} d
+left join {{ ref('readmissions__exclusion') }} d
     on a.encounter_id = d.encounter_id
+where d.encounter_id is null
 --
 -- where
 --     encounter_id in (select *
