@@ -85,6 +85,23 @@ seeds:
           {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
         ccs_description : |
           {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
+  - name: readmissions__icd_10_pcs_to_ccs
+    config:
+      database: "{{ var('readmissions_database',var('tuva_database','tuva')) }}"
+      schema: |
+        {%- if var('readmissions_schema',None) != None -%}{{var('readmissions_schema')}}{%- elif var('tuva_schema_prefix',None) != None -%}{{var('tuva_schema_prefix')}}_treadmissions{% else %}readmissions{%- endif -%}
+      alias: icd_10_pcs_to_ccs
+      enabled: "{{ var('readmissions_enabled',var('tuva_packages_enabled',True)) }}"
+      tags: readmissions
+      column_types:
+        icd_10_pcs : |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
+        description : |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
+        ccs_procedure_category : |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
+        ccs_description : |
+          {%- if target.type == "bigquery" -%} string {%- else -%} varchar {%- endif -%}
   - name: readmissions__potentially_planned_ccs_procedure_category
     config:
       database: "{{ var('readmissions_database',var('tuva_database','tuva')) }}"
