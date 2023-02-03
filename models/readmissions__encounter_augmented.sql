@@ -4,8 +4,7 @@
 -- that are relevant for readmission measures
 
 
-{{ config(materialized='table'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 select
     aa.encounter_id,

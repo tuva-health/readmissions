@@ -14,8 +14,7 @@
 -- we then check to see if they are in one of the other 4 cohorts.
 
 
-{{ config(materialized='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 
 --ranking to eventually assign a cohort to encounters in multiple cohorts
@@ -38,9 +37,9 @@ with cohort_ranks as (
     --encounter ids in procedure based cohorts
     select proc.encounter_id, 1 as c_rank
     from {{ ref('readmissions__procedure_ccs') }} proc
-    left join {{ ref('terminology__surgery_gynecology_cohort') }} sgc
+    left join {{ ref('readmissions__surgery_gynecology_cohort') }} sgc
         on proc.procedure_code = sgc.icd_10_pcs
-    left join {{ ref('terminology__specialty_cohort') }} sgsc
+    left join {{ ref('readmissions__specialty_cohort') }} sgsc
         on proc.ccs_procedure_category = sgsc.ccs and sgsc.specialty_cohort = 'Surgery/Gynecology'
     where sgc.icd_10_pcs is not null or sgsc.ccs is not null
 
@@ -49,7 +48,7 @@ with cohort_ranks as (
     --encounter ids in diagnosis based cohorts
     select diag.encounter_id, cohort_ranks.c_rank
     from {{ ref('readmissions__diagnosis_ccs') }} diag
-    inner join {{ ref('terminology__specialty_cohort') }} sc
+    inner join {{ ref('readmissions__specialty_cohort') }} sc
         on diag.ccs_diagnosis_category = sc.ccs and sc.procedure_or_diagnosis = 'Diagnosis'
     inner join cohort_ranks
         on sc.specialty_cohort = cohort_ranks.cohort

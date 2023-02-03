@@ -18,8 +18,7 @@
 -- primary diagnosis ICD-10-CM code.
 
 
-{{ config(materialized='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True)))}}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True)))}}
 
 
 select
@@ -35,7 +34,7 @@ from
     {{ ref('readmissions__stg_diagnosis') }} aa
     left join {{ ref('terminology__icd_10_cm') }} bb
     on aa.diagnosis_code = bb.icd_10_cm
-    left join {{ ref('terminology__icd_10_cm_to_ccs') }} cc
+    left join {{ ref('readmissions__icd_10_cm_to_ccs') }} cc
     on aa.diagnosis_code = cc.icd_10_cm
     left join {{ ref('readmissions__primary_diagnosis_count') }} dd
     on aa.encounter_id = dd.encounter_id

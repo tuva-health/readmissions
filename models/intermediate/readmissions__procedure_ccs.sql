@@ -7,8 +7,7 @@
 -- different associated CCS procedure categories.
 
 
-{{ config(materialized='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 
 
@@ -25,5 +24,5 @@ from
     {{ ref('readmissions__stg_procedure') }} aa
     left join {{ ref('terminology__icd_10_pcs') }} bb
     on aa.procedure_code = bb.icd_10_pcs
-    left join {{ ref('terminology__icd_10_pcs_to_ccs') }} cc
+    left join {{ ref('readmissions__icd_10_pcs_to_ccs') }} cc
     on aa.procedure_code = cc.icd_10_pcs

@@ -4,8 +4,7 @@
 -- This contains one row for every unique encounter in the dataset.
 
 
-{{ config(materialize='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 select
     cast(encounter_id as {{ dbt.type_string() }}) as encounter_id,

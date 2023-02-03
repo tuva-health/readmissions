@@ -7,8 +7,7 @@
 --       [3] Psychiatric
 
 
-{{ config(materialized='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 
 -- encounter_ids for encounters that should be
@@ -19,7 +18,7 @@ select distinct encounter_id
 from {{ ref('readmissions__diagnosis_ccs') }}
 where ccs_diagnosis_category in
     (select distinct ccs_diagnosis_category
-     from {{ ref('terminology__exclusion_ccs_diagnosis_category') }} )
+     from {{ ref('readmissions__exclusion_ccs_diagnosis_category') }} )
 )
 
 

@@ -4,8 +4,7 @@
 -- This contains one row for every unique diagnosis each patient has.
 
 
-{{ config(materialize='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 with acute_institutional_claims as (
 select distinct

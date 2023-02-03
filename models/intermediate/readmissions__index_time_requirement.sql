@@ -6,8 +6,7 @@
 -- in the dataset.
 
 
-{{ config(materialized='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 
 

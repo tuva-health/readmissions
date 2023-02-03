@@ -3,8 +3,7 @@
 -- that had a readmission and create readmission flags
 
 
-{{ config(materialized='table'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True))) }}
 
 
 

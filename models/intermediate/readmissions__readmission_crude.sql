@@ -5,8 +5,7 @@
 -- rate without taking into account all the CMS HWR logic.
 
 
-{{ config(materialize='view'
-    ,enabled=var('readmissions_enabled',var('tuva_packages_enabled',True)))  }}
+{{ config(enabled=var('readmissions_enabled',var('tuva_packages_enabled',True)))  }}
 
 
 
