@@ -1,2 +1,2 @@
 select *
-from {{source('core','intermediate_medical_claim_enhanced')}}
+from {{source('core','medical_claim')}}

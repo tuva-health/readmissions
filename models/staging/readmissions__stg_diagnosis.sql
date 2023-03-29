@@ -23,5 +23,3 @@ from {{ var('condition') }} a
 inner join  acute_institutional_claims b
     on a.claim_id = b.claim_id
 where code_type = 'icd-10-cm'
-
-

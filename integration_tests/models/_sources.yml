@@ -39,7 +39,7 @@ sources:
           - name: facility_npi
             description: The facility name for the inpatient encounter.
 
-          - name: ms_drg
+          - name: ms_drg_code
             description: >
               The MS-DRG associated with the acute inpatient encounter.
 
@@ -83,4 +83,4 @@ sources:
           - name: code_type
             description: Indicates the type of procedure (cpt, icd-10-pcs)
 
-      - name: intermediate_medical_claim_enhanced
+      - name: medical_claim

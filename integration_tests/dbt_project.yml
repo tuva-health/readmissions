@@ -3,27 +3,24 @@ version: '1.0.0'
 config-version: 2
 
 profile: 'default'
-#
-#vars:
-#
-### Configure input database and schema:
-#  readmissions_input_database: dev_user
-#  readmissions_input_schema: core
-#
-### Configure target database:
-#  tuva_database: dev_user
-#
-### Optional:
-### Override target database and schema for readmissions
-##  readmissions_database: dev_aaron
-##  readmissions_schema: test_readmissions
-#
-### Prefix all schemas
-##  tuva_schema_prefix: test
-#
-### Uncomment if you want to run only the bare minimum of what readmissions requires
-#  tuva_packages_enabled: false
-#  readmissions_enabled: true
+
+
+vars:
+
+# # Set the input database and schema:
+#   readmissions_input_database: 
+#   readmissions_input_schema: 
+
+# # Set the output database and schema:
+#   readmissions_database: 
+#   readmissions_schema: 
+#   terminology_database: 
+#   terminology_schema: 
+
+# Say what packages are enabled:
+  tuva_packages_enabled: false
+  readmissions_enabled: true
+
 
 dispatch:
   - macro_namespace: dbt
