@@ -1,0 +1,46 @@
+name: 'readmissions'
+version: '0.1.0'
+config-version: 2
+require-dbt-version: ">=1.10.0"
+
+profile: default
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  tuva_last_run: '{{ run_started_at.astimezone(modules.pytz.timezone("UTC")) }}'
+
+seeds:
+  readmissions:
+    value_sets:
+      readmissions:
+        readmissions__acute_diagnosis_ccs:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__acute_diagnosis_ccs.csv') }}"
+        readmissions__acute_diagnosis_icd_10_cm:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__acute_diagnosis_icd_10_cm.csv') }}"
+        readmissions__always_planned_ccs_diagnosis_category:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__always_planned_ccs_diagnosis_category.csv') }}"
+        readmissions__always_planned_ccs_procedure_category:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__always_planned_ccs_procedure_category.csv') }}"
+        readmissions__exclusion_ccs_diagnosis_category:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__exclusion_ccs_diagnosis_category.csv') }}"
+        readmissions__icd_10_cm_to_ccs:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__icd_10_cm_to_ccs.csv') }}"
+        readmissions__icd_10_pcs_to_ccs:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__icd_10_pcs_to_ccs.csv') }}"
+        readmissions__potentially_planned_ccs_procedure_category:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__potentially_planned_ccs_procedure_category.csv') }}"
+        readmissions__potentially_planned_icd_10_pcs:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__potentially_planned_icd_10_pcs.csv') }}"
+        readmissions__specialty_cohort:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__specialty_cohort.csv') }}"
+        readmissions__surgery_gynecology_cohort:
+          +post-hook: "{{ the_tuva_project.load_versioned_seed('value_sets','readmissions__surgery_gynecology_cohort.csv') }}"
